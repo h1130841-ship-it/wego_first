@@ -61,7 +61,7 @@ title: 📚 程式課程學習中心
         <span class="btn-start">開始學習</span>
     </a>
 
-<a href="./ai/ch01" class="card">
+<a href="./newcorse/newproject" class="card">
         <h2>📊 報告內容</h2>
         <p>期末報告</p>
         <span class="btn-start">檢閱</span>
