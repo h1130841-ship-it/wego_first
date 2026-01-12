@@ -2,14 +2,98 @@
 layout: page
 ---
 <style>
-    .course-container { display: flex; align-items: flex-start; }
-    .sidebar { width: 200px; background: #f4f4f4; padding: 15px; border-radius: 8px; position: sticky; top: 10px; height: fit-content; border: 1px solid #ddd; }
-    .main-content { flex: 1; padding-left: 30px; }
-    .sidebar ul { list-style: none; padding: 0; }
-    .sidebar li { margin-bottom: 10px; border-bottom: 1px solid #ccc; }
-    .sidebar a { text-decoration: none; color: #007bff; font-weight: bold; }
-</style>
+    :root {
+        --apple-blue: #007AFF;
+        --apple-bg: #F5F5F7;
+        --apple-sidebar-bg: rgba(255, 255, 255, 0.7);
+        --apple-card-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        --apple-border: rgba(0, 0, 0, 0.08);
+    }
 
+    body {
+        background-color: var(--apple-bg);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+        color: #1d1d1f;
+        line-height: 1.6;
+    }
+
+    .course-container {
+        display: flex;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* 側邊欄優化：毛玻璃與柔和圓角 */
+    .sidebar {
+        width: 240px;
+        background: var(--apple-sidebar-bg);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        padding: 24px;
+        border-radius: 18px;
+        position: sticky;
+        top: 30px;
+        height: fit-content;
+        border: 1px solid var(--apple-border);
+        box-shadow: var(--apple-card-shadow);
+    }
+
+    .sidebar h4 {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #86868b;
+        margin-bottom: 16px;
+        padding-left: 8px;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 4px;
+    }
+
+    .sidebar a {
+        text-decoration: none;
+        color: #1d1d1f;
+        font-weight: 500;
+        padding: 10px 12px;
+        display: block;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+        font-size: 15px;
+    }
+
+    /* 滑鼠懸停與選中效果 */
+    .sidebar a:hover {
+        background: rgba(0, 122, 255, 0.1);
+        color: var(--apple-blue);
+    }
+
+    /* 主內容區優化 */
+    .main-content {
+        flex: 1;
+        padding: 40px;
+        margin-left: 30px;
+        background: #ffffff;
+        border-radius: 18px;
+        border: 1px solid var(--apple-border);
+        box-shadow: var(--apple-card-shadow);
+    }
+
+    /* 響應式：手機版適配 */
+    @media (max-width: 768px) {
+        .course-container { flex-direction: column; }
+        .sidebar { width: 100%; position: static; margin-bottom: 20px; }
+        .main-content { margin-left: 0; padding: 25px; }
+    }
+</style>
 <div class="course-container">
     <div class="sidebar">
         {% if page.collection == 'matlab' %}
