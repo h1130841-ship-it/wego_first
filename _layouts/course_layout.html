@@ -1,187 +1,100 @@
 ---
-layout: default
+layout: compress 
+title: 標題
 ---
 <style>
-    /* 1. 強力覆蓋主題限制 */
-    /* 必須針對 Architect 主題的內層容器進行重置 */
-    .container-lg, .main-content, #main_content, .wrapper {
-        max-width: 100% !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
+  /* 1. 終極重置：消除 Architect 主題的所有外殼 */
+  body { margin: 0; padding: 0; background: #fff; width: 100vw; overflow-x: hidden; }
+  
+  /* 隱藏主題生成的 Header, Footer, 和背景漸層 */
+  header, footer, .site-footer, aside#sidebar, .inner { display: none !important; }
+  
+  /* 強制讓主題的容器失效 */
+  .container-lg, .main-content, #main_content, .wrapper {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
 
-    header, footer, .site-footer, aside#sidebar {
-        display: none !important;
-    }
+  /* 2. Apple 風格佈局 */
+  .apple-layout {
+    display: flex;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
 
-    body {
-        margin: 0 !important;
-        padding: 0 !important;
-        background-color: #ffffff !important;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-        color: #1d1d1f;
-        overflow-x: hidden;
-    }
+  /* 側邊欄：質感灰 */
+  .apple-sidebar {
+    width: 260px;
+    background: #F5F5F7;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    padding: 40px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
+  }
 
-    /* 2. 佈局容器 - 確保 100% 填滿視窗 */
-    .course-wrapper {
-        display: flex;
-        width: 100vw;
-        min-height: 100vh;
-    }
+  .apple-sidebar a {
+    display: block;
+    padding: 12px 16px;
+    color: #1d1d1f !important;
+    text-decoration: none !important;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    transition: 0.2s;
+  }
 
-    /* 3. 側邊欄優化 - Apple 灰背景 */
-    .course-sidebar {
-        width: 260px;
-        min-width: 260px;
-        background-color: #F5F5F7;
-        border-right: 1px solid rgba(0,0,0,0.05);
-        padding: 40px 20px;
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        box-sizing: border-box;
-        overflow-y: auto;
-    }
+  .apple-sidebar a:hover { background: rgba(0,0,0,0.05); }
 
-    .course-sidebar h4 {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #86868b;
-        margin: 20px 0 12px 12px;
-    }
+  /* 內容區：純白與極簡留白 */
+  .apple-content {
+    flex: 1;
+    padding: 60px 40px;
+    display: flex;
+    justify-content: center;
+  }
 
-    .course-sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+  .apple-article {
+    width: 100%;
+    max-width: 720px; /* 專業閱讀寬度 */
+    line-height: 1.8;
+  }
 
-    .course-sidebar a {
-        display: block;
-        padding: 10px 14px;
-        border-radius: 10px;
-        color: #1d1d1f !important;
-        text-decoration: none !important;
-        font-size: 14px;
-        font-weight: 500;
-        transition: all 0.2s;
-    }
+  /* 程式碼塊：深色專業質感 */
+  pre {
+    background: #1d1d1f !important;
+    color: #fff;
+    padding: 24px !important;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
 
-    .course-sidebar a:hover {
-        background-color: rgba(0,0,0,0.05);
-    }
-
-    /* 4. 右側內容區 - 內容限寬以利閱讀 */
-    .course-content {
-        flex: 1;
-        padding: 60px 5%;
-        background: #ffffff;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center; /* 讓內容水平居中 */
-    }
-
-    .content-inner {
-        width: 100%;
-        max-width: 800px; /* 這是 Apple 官網常用的舒適閱讀寬度 */
-    }
-
-    /* 5. 程式碼區塊優化 (修正你提到的顯示問題) */
-    pre {
-        background: #1C1C1E !important;
-        border-radius: 16px;
-        padding: 35px 20px 20px !important;
-        position: relative;
-        overflow-x: auto;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        margin: 25px 0;
-    }
-
-    code {
-        font-family: "SF Mono", Menlo, monospace;
-        font-size: 13.5px;
-        line-height: 1.6;
-        color: #E4E4E6;
-    }
-
-    /* 複製按鈕 */
-    .copy-code-button {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.1);
-        color: #fff;
-        border-radius: 6px;
-        padding: 4px 8px;
-        font-size: 11px;
-        cursor: pointer;
-        backdrop-filter: blur(10px);
-    }
-
-    /* 6. 手機版適配修復 */
-    @media (max-width: 768px) {
-        .course-wrapper { flex-direction: column; }
-        .course-sidebar { 
-            width: 100%; 
-            height: auto; 
-            position: relative; 
-            padding: 20px;
-            border-right: none;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .course-content { padding: 40px 20px; }
-    }
+  @media (max-width: 768px) {
+    .apple-layout { flex-direction: column; }
+    .apple-sidebar { width: 100%; height: auto; position: static; }
+  }
 </style>
 
-<div class="course-wrapper">
-    <nav class="course-sidebar">
-        {% if page.collection == 'python' %}
-            <h4>📊 Python Course</h4>
-            <ul>
-                <li><a href="{{ site.baseurl }}/python/ch01">CH01 基礎語法</a></li>
-            </ul>
-        {% elsif page.collection == 'matlab' %}
-            <h4>📊 MATLAB</h4>
-            <ul>
-                <li><a href="{{ site.baseurl }}/matlab/ch01">CH01 矩陣運算</a></li>
-                <li><a href="{{ site.baseurl }}/matlab/ch02">CH02 數據繪圖</a></li>
-            </ul>
-        {% elsif page.collection == 'ai' %}
-            <h4>🤖 AI 課程</h4>
-            <ul>
-                <li><a href="{{ site.baseurl }}/ai/ch01">CH01 AI 簡介</a></li>
-                <li><a href="{{ site.baseurl }}/ai/ch02">CH02 神經網路</a></li>
-            </ul>
-        {% endif %}
-        <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.05); margin: 20px 0;">
-        <a href="{{ site.baseurl }}/" style="color: #86868b !important; font-size: 13px;">⬅ 返回首頁</a>
+<div class="apple-layout">
+  <aside class="apple-sidebar">
+    <h2 style="font-size: 12px; color: #86868b; letter-spacing: 0.1em; margin-left: 16px;">LECTURES</h2>
+    <nav>
+      <a href="./">🏠 首頁導覽</a>
+      <a href="./matlab/ch01">📊 MATLAB 基礎</a>
+      <a href="./ai/ch01">🤖 AI 入門</a>
     </nav>
+  </aside>
 
-    <main class="course-content">
-        <div class="content-inner" markdown="1">
-            {{ content }}
-        </div>
-    </main>
+  <main class="apple-content">
+    <article class="apple-article">
+      {{ content }}
+    </article>
+  </main>
 </div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll('pre').forEach((codeBlock) => {
-        const button = document.createElement('button');
-        button.className = 'copy-code-button';
-        button.innerText = 'Copy';
-        button.addEventListener('click', () => {
-            const code = codeBlock.querySelector('code').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                button.innerText = '✓ Copied';
-                setTimeout(() => { button.innerText = 'Copy'; }, 2000);
-            });
-        });
-        codeBlock.appendChild(button);
-    });
-});
-</script>
